@@ -1,0 +1,46 @@
+﻿<Window x:Class="ReservasiKeretaHotel.SearchTiket"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ReservasiKeretaHotel"
+        mc:Ignorable="d"
+        Title="SearchTiket" Height="629" Width="889.2">
+    <Grid Background="YellowGreen">
+        <GroupBox Header="RESERVASI TIKET KERETA API" HorizontalAlignment="Left" VerticalAlignment="Top" Width="881" Height="598" FontSize="15" RenderTransformOrigin="0.109,0.47">
+            <Button Content="Cari" HorizontalAlignment="Left" Margin="10,216,0,0" VerticalAlignment="Top" Width="117" Click="Button_Click"/>
+        </GroupBox>
+        <ComboBox x:Name="combostasiunasal" ItemsSource="{Binding getcombo }" SelectedValuePath="Id" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="combostasiunasal_SelectionChanged"/>
+        <Label Content="STASIUN ASAL" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="STASIUN TUJUAN" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="combostasiuntujuan" ItemsSource="{Binding getcombo }" SelectedValuePath="Id" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="10,125,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="TANGGAL KEBERANGKATAN" HorizontalAlignment="Left" Margin="10,162,0,0" VerticalAlignment="Top" Width="178"/>
+        <DatePicker HorizontalAlignment="Left" Margin="10,193,0,0" VerticalAlignment="Top" Width="120" Height="32"/>
+        <Button Content="Pesan" x:Name ="reservation" HorizontalAlignment="Left" Margin="200,276,0,0" VerticalAlignment="Top" Width="195" Height="36"/>
+        <DataGrid x:Name="jadwalGrid"  ItemsSource="{Binding trainall}" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="240" Margin="200,31,0,0" VerticalAlignment="Top" Width="571" Background="#FFF5F4F4" BorderBrush="#FFF9FBFD" SelectionChanged="jadwalGrid_SelectionChanged" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Nama Kereta" Binding="{Binding trains.Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Stasiun Asal" Binding="{Binding stations.Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Stasiun Tujuan" Binding="{Binding destinations.Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Jam Keberangkatan" Binding="{Binding departure}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Jam Tiba" Binding="{Binding arrival}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Harga" Binding="{Binding trains.Price}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Kelas" Binding="{Binding trains.wagons.Name}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid x:Name="tschedule"  ItemsSource="{Binding tampil}" AutoGenerateColumns="False" HorizontalAlignment="Left" Margin="200,344,0,0" VerticalAlignment="Top" Height="219" Width="571" SelectionChanged="tschedule_SelectionChanged">
+        <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Nama Kereta" Binding="{Binding trains.Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Gerbong" Binding="{Binding stations.Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Kelas" Binding="{Binding destinations.Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Harga" Binding="{Binding Price}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Nama Kereta" Binding="{Binding trains.Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Gerbong" Binding="{Binding wagons.Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Kelas" Binding="{Binding wagons.trainclas.Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Harga" Binding="{Binding Price}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
